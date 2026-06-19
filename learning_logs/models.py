@@ -8,6 +8,18 @@ class Topic(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        "return string representation of the model"
+        "string representation of the model"
         return self.text
     
+class Entry(models.Model):
+    "something specific learned about a topic"
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta():
+        verbose_name_plural = "Entries"
+    
+    def __str__(self):
+        "String reprsentation of the model"
+        return self.text[:50]
