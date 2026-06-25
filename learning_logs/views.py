@@ -66,7 +66,7 @@ def edit_entry(request, entry_id):
         form = EntryForm(instance=entry)
     else:
         "post data submitted; process the data"
-        form = EntryForm(data=request.POST)
+        form = EntryForm(instance=entry, data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('learning_logs:topic', topic_id=topic.id)
